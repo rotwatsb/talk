@@ -1,0 +1,14 @@
+<ul>
+  <li>Hash: {{ hash }}</li>
+  <li>Confirmations: {{ confirmations }}</li>
+  <li>Size: {{ size }}</li>
+  <li>Height: {{ height }}</li>
+  <li>Version: {{ version }}</li>
+  <li>Merkle Root: {{ merkleroot }}</li>
+  <li>Time: {{ time }}</li>
+  <li>Nonce: {{ nonce }}</li>
+  <li>Bits: {{ bits }}</li>
+  <li>Chainwork: {{ chainwork }}</li>
+  <li>Previos block hash: <a href="/talk/block/{{ nextblockhash }}/">{{ previousblockhash }}</a></li>
+  <li>Next block hash: <a href="/talk/block/{{ nextblockhash }}/">{{ nextblockhash }}</a></li>
+</ul>
