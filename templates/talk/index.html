@@ -1,7 +1,6 @@
 <ul>
-  <li>Version: {{ version }}</li>
-  <li>Protocol: {{ protocolversion }}</li>
-  <li>Blocks: {{ blocks }}</li>
-  <li>Difficulty: {{ difficulty }}</li>
-  <li>Best block hash: <a href="{% url 'talk:block_detail' best_block %}">{{ best_block }}</a></li>
+  {% for block in blocks %}
+  <li><a href="{% url 'talk:block_detail' block.block_hash %}">{{ block.block_hash }}</a></li>
+  {% endfor %}
 </ul>
+

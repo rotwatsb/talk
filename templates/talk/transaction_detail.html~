@@ -1,0 +1,2 @@
+(<a href="{% url 'talk:index' %}">Return to block index</a>)
+(<a href="{% url 'talk:block_detail' %}">Return to block</a>)

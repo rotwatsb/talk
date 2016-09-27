@@ -1,0 +1,20 @@
+(<a href="{% url 'talk:index' %}">Return to block index</a>)
+(<a href="{% url 'talk:block_detail' transaction.block_hash.block_hash %}">Return to block</a>)
+
+<h3>Inputs</h3>
+<ul>
+  {% for input in inputs %}
+  {% if input.prev_index and input.prev_tx %}
+  <li>Output {{ input.prev_index }} from <a href="{% url 'talk:transaction_detail' input.prev_tx.tx_hash %}">{{ input.prev_transaction.tx_hash }}</a></li>
+  {% else %}
+  <li>An output no longer stored</li>
+  {% endif %}
+  {% endfor %}
+</ul>
+<h3>Outputs</h3>
+<ul>
+  {% for output in outputs %}
+  <li>{{ output.output_index }}: {{ output.value }} satoshis</li>
+  {% endfor %}
+</ul>
+
