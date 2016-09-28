@@ -5,7 +5,7 @@
 <ul>
   {% for input in inputs %}
   {% if input.prev_index and input.prev_tx %}
-  <li>Output {{ input.prev_index }} from <a href="{% url 'talk:transaction_detail' input.prev_tx.tx_hash %}">{{ input.prev_transaction.tx_hash }}</a></li>
+  <li>Output {{ input.prev_index }} from <a href="{% url 'talk:transaction_detail' input.prev_tx %}">{{ input.prev_tx }}</a></li>
   {% else %}
   <li>An output no longer stored</li>
   {% endif %}
