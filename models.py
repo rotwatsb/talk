@@ -16,7 +16,7 @@ class TxOut(models.Model):
 
 class TxIn(models.Model):
     tx = models.ForeignKey('Transaction', on_delete=models.CASCADE)
-    prev_tx = models.ForeignKey('Transaction', null=True, on_delete=models.SET_NULL, related_name='input_transaction_set')
+    prev_tx = models.CharField(max_length=64, null=True)
     prev_index = models.IntegerField(null=True)
     
 class Block(models.Model):
