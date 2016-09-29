@@ -4,7 +4,7 @@
 <h3>Inputs</h3>
 <ul>
   {% for input in inputs %}
-  {% if input.prev_index and input.prev_tx %}
+  {% if input.prev_index %}
   <li>Output {{ input.prev_index }} from <a href="{% url 'talk:transaction_detail' input.prev_tx %}">{{ input.prev_tx }}</a></li>
   {% else %}
   <li>An output no longer stored</li>
