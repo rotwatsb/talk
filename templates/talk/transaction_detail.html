@@ -4,17 +4,13 @@
 <h3>Inputs</h3>
 <ul>
   {% for input in inputs %}
-  {% if input.prev_index %}
   <li>Output {{ input.prev_index }} from <a href="{% url 'talk:transaction_detail' input.prev_tx %}">{{ input.prev_tx }}</a></li>
-  {% else %}
-  <li>An output no longer stored</li>
-  {% endif %}
   {% endfor %}
 </ul>
 <h3>Outputs</h3>
 <ul>
   {% for output in outputs %}
-  <li>{{ output.output_index }}: {{ output.value }} satoshis</li>
+  <li>{{ output.output_index }}: {{ output.value }} satoshis to {{ output.pubkey }}</li>
   {% endfor %}
 </ul>
 

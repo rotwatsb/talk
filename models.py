@@ -11,6 +11,7 @@ class Transaction(models.Model):
 
 class TxOut(models.Model):
     tx = models.ForeignKey('Transaction', on_delete=models.CASCADE)
+    pubkey = models.CharField(max_length=34, null=True)
     output_index = models.IntegerField()
     value = models.BigIntegerField()
 
