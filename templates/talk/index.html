@@ -1,6 +1,10 @@
+{% extends 'talk/base.html' %}
+
+{% block body_block %}
 <ul>
   {% for block in blocks %}
   <li><a href="{% url 'talk:block_detail' block.block_hash %}">{{ block.block_hash }}</a></li>
   {% endfor %}
 </ul>
+{% endblock %}
 

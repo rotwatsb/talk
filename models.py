@@ -16,21 +16,27 @@ class Transaction(models.Model):
         return str(self.tx_hash)
 
 class TxOut(models.Model):
+    output = models.CharField(max_length=69, primary_key=True)
     tx = models.ForeignKey('Transaction', on_delete=models.CASCADE)
-    pubkey = models.CharField(max_length=34, null=True)
+    address = models.ForeignKey('Address', null=True, on_delete=models.SET_NULL)
     output_index = models.IntegerField()
     value = models.BigIntegerField()
 
     def __str__(self):
-        return '_'.join([str(self.tx), str(self.output_index)])
+        return str(self.output)
 
 class TxIn(models.Model):
     tx = models.ForeignKey('Transaction', on_delete=models.CASCADE)
-    prev_tx = models.CharField(max_length=64, null=True)
-    prev_index = models.IntegerField(null=True)
+    output = models.ForeignKey('TxOut', null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return '_'.join([str(self.prev_tx), str(self.prev_index)])
+        return str(self.output)
+
+class Address(models.Model):
+    address = models.CharField(max_length=34, primary_key=True)
+
+    def __str__(self):
+        return str(self.address)
     
 class Block(models.Model):
     block_hash = models.CharField(max_length=64, primary_key=True)

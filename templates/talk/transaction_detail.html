@@ -1,16 +1,26 @@
-(<a href="{% url 'talk:index' %}">Return to block index</a>)
+{% extends 'talk/base.html' %}
+{% block body_block %}
+(<a href="{% url 'talk:index' %}">Return to blocks list</a>)
 (<a href="{% url 'talk:block_detail' transaction.block_hash.block_hash %}">Return to block</a>)
 
-<h3>Inputs</h3>
+<h3>Inputs (just what's saved)</h3>
+{% if inputs %}
 <ul>
   {% for input in inputs %}
-  <li>Output {{ input.prev_index }} from <a href="{% url 'talk:transaction_detail' input.prev_tx %}">{{ input.prev_tx }}</a></li>
+  <li><a href="{% url 'talk:transaction_detail' input.output.tx %}">{{ input.output.value }} satoshis from {{ input.output.address }}</a></li>
   {% endfor %}
 </ul>
-<h3>Outputs</h3>
+{% else %}
+<p>No inputs (sorry, they're too old)</p>
+{% endif %}
+<h3>Outputs (all of 'em)</h3>
 <ul>
-  {% for output in outputs %}
-  <li>{{ output.output_index }}: {{ output.value }} satoshis to {{ output.pubkey }}</li>
+  {% for output, reinput in outputs %}
+  {% if reinput %}
+  <li><a href="{% url 'talk:transaction_detail' reinput.tx_hash  %}">{{ output.output_index }}: {{ output.value }} satoshis to {{ output.address }}</a></li>
+  {% else %}
+  <li>{{ output.output_index }}: {{ output.value }} satoshis to {{ output.address }}</li>
+  {% endif %}
   {% endfor %}
 </ul>
-
+{% endblock %}

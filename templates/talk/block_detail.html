@@ -1,12 +1,15 @@
+{% extends 'talk/base.html' %}
+
+{% block body_block %}
 (<a href="{% url 'talk:index' %}">Return to block index</a>)
 <h3>Block</h3>
 <ul>
-  <li>Hash: {{ block.block_hash }}</li>
-  <li>Height: {{ block.block_height }}</li>
-  <li>Merkle Root: {{ block.merkleroot }}</li>
-  <li>Time: {{ block.time }}</li>
-  <li>Nonce: {{ block.nonce }}</li>
-  <li>Bits: {{ block.bits }}</li>
+  <li>Hash: {{ block_hash }}</li>
+  <li>Height: {{ block_height }}</li>
+  <li>Merkle Root: {{ merkleroot }}</li>
+  <li>Time: {{ time }}</li>
+  <li>Nonce: {{ nonce }}</li>
+  <li>Bits: {{ bits }}</li>
   {% if prev_block_hash %}
   <li>Previos block hash: <a href="{% url 'talk:block_detail' prev_block_hash %}">{{ prev_block_hash }}</a></li>
   {% endif %}
@@ -15,8 +18,7 @@
   {% endif %}
 </ul>
 
-<h3>Block Comments</h3>
-<form action="{% url 'talk:block_post' block.block_hash %}" method="post">
+<form action="{% url 'talk:block_post' block_hash %}" method="post">
   {% csrf_token %}
   <label for="comment">Leave a comment:</label><br />
   <input type="text" name="comment" id="comment"/>
@@ -35,3 +37,5 @@
   <li><a href="{% url 'talk:transaction_detail' transaction.tx_hash %}">{{ transaction.tx_hash }}</a></li>
   {% endfor %}
 </ul>
+
+{% endblock %}
