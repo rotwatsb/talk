@@ -1,6 +1,8 @@
 {% extends 'talk/base.html' %}
+{% load static %}
 
 {% block body_block %}
+<script src="{% static 'talk/js/tablesort.js' %}"></script>
 (<a href="{% url 'talk:index' %}">Return to block index</a>)
 <h3>Block</h3>
 <ul>
@@ -31,11 +33,19 @@
   {% endfor %}
 </ul>
 
-<h3>Transactions</h3>
-<ul>
-  {% for transaction in transactions %}
-  <li><a href="{% url 'talk:transaction_detail' transaction.tx_hash %}">{{ transaction.tx_hash }}</a></li>
+
+<h3 align="center">Transactions</h3>
+<table id="sorttable" class="center">
+  <tr>
+    <th>Hash</th>
+    <th>Amount<th>
+  </tr>
+  {% for transaction, amount in transactions %}
+  <tr>
+    <td><a href="{% url 'talk:transaction_detail' transaction.tx_hash %}">{{ transaction.tx_hash }}</a></td>
+    <td>{{ amount }}</td>
+  </tr>
   {% endfor %}
-</ul>
+</table>
 
 {% endblock %}

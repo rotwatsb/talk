@@ -1,10 +1,21 @@
 {% extends 'talk/base.html' %}
+{% load static %}
 
 {% block body_block %}
-<ul>
-  {% for block in blocks %}
-  <li><a href="{% url 'talk:block_detail' block.block_hash %}">{{ block.block_hash }}</a></li>
+<script src="{% static 'talk/js/tablesort.js' %}"></script>
+<table id="sorttable" class="center">
+  <tr>
+    <th>Height</th>
+    <th>Hash</th>
+    <th>Time</th>
+  </tr>
+  {% for block, time in blocks %}
+  <tr>
+    <td>{{ block.block_height }}</td>
+    <td><a href="{% url 'talk:block_detail' block.block_hash %}">{{ block.block_hash }}</a></td>
+    <td>{{ time }}</td>
+  </tr>
   {% endfor %}
-</ul>
+</table>
 {% endblock %}
 

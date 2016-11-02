@@ -1,0 +1,33 @@
+body {
+    background-color: #85CC2B;
+}
+
+table {
+    border: 45px solid #4F7BFF;
+}
+
+th, td {
+    padding: 5px;
+}
+
+tr:nth-child(2n) {
+    background-color: #79B22E;
+}
+
+td:hover {
+    background-color: #FF8768;
+    color: #4F7BFF;
+}
+
+th:hover {
+    color: #4F7BFF;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+}

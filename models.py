@@ -28,7 +28,7 @@ class TxOut(models.Model):
 class TxIn(models.Model):
     tx = models.ForeignKey('Transaction', on_delete=models.CASCADE)
     output = models.ForeignKey('TxOut', null=True, on_delete=models.SET_NULL)
-
+        
     def __str__(self):
         return str(self.output)
 

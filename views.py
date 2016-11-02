@@ -7,11 +7,14 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Comment, Block, Transaction, TxIn
 
+import datetime
+
 def index(request):
     #info = rpc_connection.getinfo()
     #best_block_hash = rpc_connection.getbestblockhash()
     info = {}
-    info['blocks'] = Block.objects.order_by('-time')
+    info['blocks'] = [(block, datetime.datetime.fromtimestamp(block.time))
+                       for block in Block.objects.all()]
     return render(request, 'talk/index.html', info)
 
 def block_detail(request, block_hash):
@@ -31,11 +34,12 @@ def block_detail(request, block_hash):
     info['block_hash'] = block.block_hash
     info['block_height'] = block.block_height
     info['merkleroot'] = block.merkleroot
-    info['time'] = block.time
+    info['time'] = datetime.datetime.fromtimestamp(block.time)
     info['bits'] = block.bits
     info['nonce'] = block.nonce
     info['comments'] = block_comments
-    info['transactions'] = block.transaction_set.all()
+    info['transactions'] = [(tx, sum([op.value for op in tx.txout_set.all()]))
+                            for tx in block.transaction_set.all()]
     
     return render(request, 'talk/block_detail.html', info)
 
