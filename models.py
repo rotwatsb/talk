@@ -11,6 +11,7 @@ class Comment(models.Model):
 class Transaction(models.Model):
     tx_hash = models.CharField(max_length=64, primary_key=True)
     block_hash = models.ForeignKey('Block', on_delete=models.CASCADE)
+    total_value = models.BigIntegerField(null=True, default = None);
 
     def __str__(self):
         return str(self.tx_hash)
@@ -48,7 +49,8 @@ class Block(models.Model):
     median_time = models.PositiveIntegerField()
     bits = models.BigIntegerField()
     nonce = models.BigIntegerField()
-
+    total_value = models.BigIntegerField(null = True, default = None);
+    
     def __str__(self):
         return str(self.block_hash)
     

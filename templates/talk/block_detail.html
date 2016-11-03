@@ -40,10 +40,10 @@
     <th>Hash</th>
     <th>Amount<th>
   </tr>
-  {% for transaction, amount in transactions %}
+  {% for transaction in transactions %}
   <tr>
     <td><a href="{% url 'talk:transaction_detail' transaction.tx_hash %}">{{ transaction.tx_hash }}</a></td>
-    <td>{{ amount }}</td>
+    <td>{{ transaction.total_value }}</td>
   </tr>
   {% endfor %}
 </table>

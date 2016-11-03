@@ -11,8 +11,7 @@ window.onload = function() {
 function mycmp(table, a, b, col, cmp) {
     c1 = parseInt(table.rows[a].cells[col].innerHTML);
     c2 = parseInt(table.rows[b].cells[col].innerHTML);
-
-    if (c1 == NaN || c2 == NaN) {
+    if (isNaN(c1) || isNaN(c2)) {
 	c1 = table.rows[a].cells[col].innerHTML;
 	c2 = table.rows[b].cells[col].innerHTML;
     }

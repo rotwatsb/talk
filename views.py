@@ -38,8 +38,7 @@ def block_detail(request, block_hash):
     info['bits'] = block.bits
     info['nonce'] = block.nonce
     info['comments'] = block_comments
-    info['transactions'] = [(tx, sum([op.value for op in tx.txout_set.all()]))
-                            for tx in block.transaction_set.all()]
+    info['transactions'] = block.transaction_set.all()
     
     return render(request, 'talk/block_detail.html', info)
 

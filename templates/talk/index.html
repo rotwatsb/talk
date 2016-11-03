@@ -7,12 +7,14 @@
   <tr>
     <th>Height</th>
     <th>Hash</th>
+    <th>Tx Total</th>
     <th>Time</th>
   </tr>
   {% for block, time in blocks %}
   <tr>
     <td>{{ block.block_height }}</td>
     <td><a href="{% url 'talk:block_detail' block.block_hash %}">{{ block.block_hash }}</a></td>
+    <td>{{ block.total_value }}</td>
     <td>{{ time }}</td>
   </tr>
   {% endfor %}
